@@ -10,6 +10,8 @@ import requests
 from gensim.models import Doc2Vec
 from nltk.tokenize import word_tokenize, sent_tokenize
 from dotenv import load_dotenv
+import nltk
+nltk.download("punkt")
 
 # === Load environment variables ===
 load_dotenv()
