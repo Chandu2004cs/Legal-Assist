@@ -12,18 +12,23 @@ import chatRoutes from "./routes/chat-routes.js";
 
 const app = express();
 
+// === Enable CORS ===
+// Required for cross-origin cookies (frontend on Vercel, backend on Render)
+app.use(cors({
+  origin: process.env.FRONTEND_DOMAIN, // e.g., https://legal-assist-frontend-nkut.onrender.com
+  credentials: true,
+}));
 
-app.use(cors({ origin: process.env.FRONTEND_DOMAIN, credentials: true }));
 // === Middlewares ===
 app.use(express.json());
-app.use(cookieParser(process.env.COOKIE_SECRET));
+app.use(cookieParser(process.env.COOKIE_SECRET)); // ensure COOKIE_SECRET is set in .env
 app.use(morgan("dev"));
 
 // === Routes ===
 app.use("/api/user/", userRoutes);
 app.use("/api/chat/", chatRoutes);
 
-// === MongoDB & Server ===
+// === MongoDB & Server Start ===
 mongoose
   .connect(process.env.MONGO_URL as string)
   .then(() => {
