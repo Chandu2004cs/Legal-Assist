@@ -4,7 +4,7 @@ console.log("axios.defaults.baseURL", axios.defaults.baseURL);
 axios.defaults.withCredentials = true;
 export const userLogin = async (email: string, password: string) => {
 	try {
-		const response = await axios.post("/user/login", { email, password });
+		const response = await axios.get("/user/login", { email, password });
 		if (response.status !== 200) {
 			throw new Error();
 		}
