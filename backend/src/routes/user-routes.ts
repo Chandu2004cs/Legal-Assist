@@ -22,7 +22,7 @@ userRoutes.get("/", getAllUsers);
 
 userRoutes.post("/signup", validate(signUpValidator), userSignUp);
 
-userRoutes.post("/login", validate(loginValidator), userLogin);
+userRoutes.get("/login", validate(loginValidator), userLogin);
 
 userRoutes.get("/auth-status", verifyToken, verifyUserStatus); // check if user cookies are valid so he doesnt have to login again
 
